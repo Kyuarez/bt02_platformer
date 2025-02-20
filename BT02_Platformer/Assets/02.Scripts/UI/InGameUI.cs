@@ -10,7 +10,6 @@ public class InGameUI : MonoBehaviour
     [SerializeField] private Sprite title_gameover;
     [SerializeField] private Sprite title_clear;
 
-
     public void SetActiveInGameUI(GAME_STATE state)
     {
         switch (state)
@@ -35,6 +34,16 @@ public class InGameUI : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void OnClickRestart()
+    {
+        GameManager.Instance.ResetStage();
+    }
+
+    public void OnClickNext()
+    {
+        GameManager.Instance.CurrentStage++;
     }
 
 }

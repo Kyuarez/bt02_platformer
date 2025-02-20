@@ -63,6 +63,10 @@ public class PlayerController : MonoBehaviour
     {
         if(GameManager.STATE != GAME_STATE.PLAYING)
         {
+            if(rigid.linearVelocity.magnitude > 0)
+            {
+                rigid.linearVelocity = Vector2.zero;
+            }
             return;
         }
 
@@ -106,6 +110,12 @@ public class PlayerController : MonoBehaviour
             anim.Play(currentAnim);
         }
 
+    }
+
+    public void InitPlayerPos(Vector2 pos)
+    {
+        rigid.linearVelocity = new Vector2 (0,0);
+        transform.position = pos;
     }
 
     private void Jump()

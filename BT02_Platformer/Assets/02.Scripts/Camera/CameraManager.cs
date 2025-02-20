@@ -23,7 +23,6 @@ public class CameraManager : MonoBehaviour
     private void Awake()
     {
         cam = GetComponent<Camera>();
-        target = Object.FindFirstObjectByType<PlayerController>();
     }
 
     private void Update()
@@ -33,6 +32,12 @@ public class CameraManager : MonoBehaviour
 
     private void CameraMoveToTarget()
     {
+        if(target == null)
+        {
+            target = Object.FindFirstObjectByType<PlayerController>();
+            return;
+        }
+
         Vector3 targetPos = target.transform.position;
         float adjustX = targetPos.x;
         float adjustY = targetPos.y;

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    protected T instance;
-    public T Instance 
+    protected static T instance;
+    public static T Instance 
     { 
         get 
         { 

@@ -4,7 +4,7 @@ public class TitleUI : MonoBehaviour
 {
     public void OnClickStartGame()
     {
-        SceneTransitionManager.LoadScene(SceneType.InGame);
+        SceneTransitionManager.Instance.LoadSceneAsync(SceneType.InGame);
     }
 
     public void OnClickLoadGame()
