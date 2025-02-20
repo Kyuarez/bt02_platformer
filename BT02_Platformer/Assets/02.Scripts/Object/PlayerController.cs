@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+
+
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
@@ -12,8 +14,6 @@ public class PlayerController : MonoBehaviour
         anim_player_clear,
         anim_player_gameover,
     }
-
-    public static string state = "playing";
 
     float axisH = 0.0f;
     public float moveSpeed = 3.0f;
@@ -35,7 +35,11 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
-        state = "playing";
+    }
+
+    private void Start()
+    {
+        GameManager.STATE = GAME_STATE.PLAYING;
     }
 
     private void FixedUpdate()
@@ -57,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(state != "playing")
+        if(GameManager.STATE != GAME_STATE.PLAYING)
         {
             return;
         }
@@ -126,7 +130,7 @@ public class PlayerController : MonoBehaviour
     private void OnGameOver()
     {
         anim.Play(currentAnim = Enum.GetName(typeof(ANIME_STATE), 4));
-        state = "gameover";
+        GameManager.STATE = GAME_STATE.GAMEOVER;
         GameStop();
         col.enabled = false;
 
@@ -137,7 +141,7 @@ public class PlayerController : MonoBehaviour
     private void OnGoal()
     {
         anim.Play(currentAnim = Enum.GetName(typeof(ANIME_STATE), 3));
-        state = "gameclear";
+        GameManager.STATE = GAME_STATE.GAMECLEAR;
         GameStop();
     }
 
